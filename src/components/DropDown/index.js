@@ -1,7 +1,7 @@
 
 
 import { useState, useCallback } from 'react';
-import { defaultInpStyle, dropDownStyle, optionsWrapStyle, optionStyle } from 'components/DropDown/style.js'
+import { defaultInpStyle, dropDownStyle, filterInpStyle, optionsWrapStyle, optionStyle } from 'components/DropDown/style.js'
 
 export default ({
     title='Choose Option',
@@ -10,12 +10,14 @@ export default ({
     style,
     options = [],
     selectedValues,
-    onChange
+    onChange,
+    inputPlaceholder='Search Options...'
 }) => {
+    const [inlineOptions, setInlineOptions] = useState(options) 
     const [isOpen, setIsOpen] = useState(false)
-    if (!Array.isArray(selectedValues)) {
-        selectedValues = [selectedValues]
-    }
+    
+    selectedValues = !Array.isArray(selectedValues)?[selectedValues]:selectedValues
+    
     const handleDropDown = useCallback(() => {
         setIsOpen(!isOpen)
     }, [isOpen])
@@ -39,13 +41,22 @@ export default ({
             onChange(newValues)
         }
     }, [selectedValues, type])
+
+    const handleInputChange = useCallback((event) => {
+        const inputText = event.target.value
+        const filteredOptions = options.filter(({label})=>label.toLowerCase().includes(inputText.toLowerCase()))
+        setInlineOptions(filteredOptions)
+    }, [options])
     
     return (
     <div css={dropDownStyle, style}> 
         <div css={defaultInpStyle(isOpen)} onClick={handleDropDown}><InputComponent/></div>
+        
         {isOpen && (
         <div css={optionsWrapStyle} className='option-wrapper'>
-            {options.map(({key, label})=>(
+            <input type='text' css={filterInpStyle} placeholder={inputPlaceholder} onChange={handleInputChange}/>
+            
+            {inlineOptions.map(({key, label})=>(
             <div key={key} 
                  css={optionStyle(selectedValues.includes(key))}
                  className='option'

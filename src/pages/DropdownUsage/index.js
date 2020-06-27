@@ -1,13 +1,13 @@
-import {  wrapperStyle } from 'pages/DropdownUsage/style.js'
 import Radio from 'components/Radio'
 import Checkbox from 'components/Checkbox'
+import { Fragment } from 'react'
 
 function DropdownUsage () { 
     return (
-        <div css={wrapperStyle}>
+        <Fragment>
           <Radio /> 
           <Checkbox />
-        </div>
+        </Fragment>
     )
 }
 

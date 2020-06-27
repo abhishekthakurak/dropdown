@@ -7,7 +7,13 @@ const fruits = [
     {key: 'ma', label:'Mango'},
     {key: 'ap', label:'Apple'},
     {key: 'ki', label:'Kiwi'},
-    {key: 'pa', label:'papaya'}
+    {key: 'mu', label:'Muskmelon'},
+    {key: 'wa', label:'Watermelon'},
+    {key: 'pe', label:'Peach'},
+    {key: 'gr', label:'Grapes'},
+    {key: 'bl', label:'Blueberries'},
+    {key: 'ga', label:'Gauva'},
+    {key: 'pi', label:'Pineapple'}
 ]
 
 function Checkbox () { 

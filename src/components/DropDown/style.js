@@ -1,5 +1,6 @@
 
 import { css } from '@emotion/core'
+import { minDesktopWidth } from 'constants/media'
 
 export const dropDownStyle = css`
     position: relative;
@@ -32,6 +33,8 @@ export const optionsWrapStyle = css`
     cursor: pointer;
     margin-top: 4px;
     box-shadow: 0px 2px 2px 0px #cccc;
+    max-height: 400px;
+    overflow: auto;
 `
 const colorOption = css`
     background: #5e23dc;
@@ -42,7 +45,23 @@ export const optionStyle = (selected) => css`
     padding: 8px 12px;
     border: 1px solid #eee;
     &:hover {
-        background: #999;
-        color: #fff;
+        @media (${minDesktopWidth}) {
+            background: #999;
+            color: #fff;
+        }
+    }
+`
+
+export const filterInpStyle = css`
+    width: calc(100% - 16px);
+    height: 30px;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 34px;
+    background-color: transparent;
+    color: #5591F4;
+    margin: 8px;
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.3);
     }
 `

@@ -11,4 +11,5 @@ export default {
   assets: resolveApp('src/assets'),
   pages: resolveApp('src/pages'),
   components: resolveApp('src/components'),
+  constants: resolveApp('src/constants'),
 }
